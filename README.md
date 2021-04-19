@@ -85,19 +85,19 @@ STP) evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(180
 ```
 Output looks like this.
 ```
-saved: ./data01/001/20150908081953.7D.FS04D.--.BHZ.sac
-saved: ./data01/001/20150908081953.7D.FS08D.--.BHZ.sac
-saved: ./data01/001/20150908081953.7D.FS44D.--.BHZ.sac
-saved: ./data01/001/20150908081953.7D.G10D.--.BHZ.sac
-saved: ./data01/001/20150908081953.7D.G33D.--.BHZ.sac
-saved: ./data01/001/20150908081953.7D.G37D.--.BHZ.sac
-saved: ./data01/001/20150908081953.7D.J20D.--.BHZ.sac
-saved: ./data01/001/20150908081953.7D.M16D.--.BHZ.sac
+saved: *./data01/001/*20150908081953.7D.FS04D.--.BHZ.sac
+saved: *./data01/001/*20150908081953.7D.FS08D.--.BHZ.sac
+saved: *./data01/001/*20150908081953.7D.FS44D.--.BHZ.sac
+saved: *./data01/001/*20150908081953.7D.G10D.--.BHZ.sac
+saved: *./data01/001/*20150908081953.7D.G33D.--.BHZ.sac
+saved: *./data01/001/*20150908081953.7D.G37D.--.BHZ.sac
+saved: *./data01/001/*20150908081953.7D.J20D.--.BHZ.sac
+saved: *./data01/001/*20150908081953.7D.M16D.--.BHZ.sac
 ```
 
 ### Input list of commands
 ```
-STP) input filepath
+STP) input _filepath_
 ```
 where the filepath contains multiple lines of the commands.
 
