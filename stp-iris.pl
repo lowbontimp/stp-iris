@@ -24,7 +24,7 @@ my $omarker=0;
 my $outputdir=".";
 my $decimation="off";
 my @factors = ();
-my $tmpdir="./.tmpdir";
+my $tmpdir="./.tmpdir.aJyrZ0RjID782P88";
 my $velocitymodel="ak135";
 my ($phasename1_g,$trvt1_g,$phasename2_g,$trvt2_g)=(-12345,-12345,-12345,-12345);
 my ($evla_g,$evlo_g,$evdp_g)=(-12345,-12345,-12345);
@@ -331,11 +331,15 @@ sub mkTmpDir{
 }
 
 sub cleaningTmpdir {
-    if(not &is_folder_empty("$tmpdir")){
+    #if(not &is_folder_empty("$tmpdir")){
         #system(join(" ","rm -rf $tmpdir/*"));
+    #    system(join(" ","rm -rf $tmpdir"));
+	#	&File::Path::make_path($tmpdir) ;
+    #}
+	if (-e $tmpdir){
         system(join(" ","rm -rf $tmpdir"));
 		&File::Path::make_path($tmpdir) ;
-    }
+	}
 }
 
 #sub cleaningSACdir {
