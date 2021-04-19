@@ -97,9 +97,9 @@ saved: ./data01/001/20150908081953.7D.M16D.--.BHZ.sac
 
 ### Input list of commands
 ```
-input _filepath_
+input filepath
 ```
-where the filepath contains multiple lines of the commands.
+where the _filepath_ contains multiple lines of the commands.
 
 As an example file is
 ```
