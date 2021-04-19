@@ -17,7 +17,7 @@ Perl library can be easily installed using `cpan`
 ```
 $) cpan
 cpan> install Term::ReadLine
-cpan> LWP::UserAgent 
+cpan> install LWP::UserAgent 
 ...
 and so on.
 ```
