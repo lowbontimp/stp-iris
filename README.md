@@ -1,6 +1,12 @@
 # stp-iris.pl
 `stp-iris.pl` is a perl script for downloading seismic waveform data in the format of [SAC](http://ds.iris.edu/files/sac-manual/) from http://service.iris.edu on the command-line interface.
 
+## Strengh
+* It runs in command-line interface.
+* It is fast because raytracing is not performed.
+* It 
+
+
 ## Installation
 ### 1. Perl library
 You should install perl libraries below. 
@@ -156,6 +162,15 @@ After turning on `stp-iris.pl`,
 input cmd01
 ```
 
+## Tip for running `stp-iris.pl` in background
+`stp-iris.pl` can run in background using a linux command [`nohup`](https://linux.die.net/man/1/nohup).
+```
+$) nohup ./stp-iris.pl
+STP) input cmd01
+CTRL+Z
+$) bg
+```
+`nohup` makes `stp-iris.pl` immune to an unexpected shutdown of terminal.
 
 ## List of to do
 - [ ] Option to change 'O' into other phases, such as 'P' or 'S' (using raytracing program)
