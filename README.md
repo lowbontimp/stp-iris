@@ -1,9 +1,7 @@
 # stp-iris.pl
 
 
-## How to use stp-iris.pl
-
-### Installation
+## Installation
 
 You should install perl libraries below. 
 
@@ -25,10 +23,13 @@ and so on.
 ```
 
 
-###Tutorial
+## Tutorial
+```
 $) chmod +x ./stp-iris.pl
 $) ./stp-iris.pl
+```
 
+```
 +++++++++++++++++++++++++++
 | SAC Transfer Protocol   |
 |    (----.---.--.--)     |
@@ -37,12 +38,7 @@ $) ./stp-iris.pl
 Type help(h) to see usage.
 
 ---------------------------
-
-
-id: [something you know]
-pw: [something you know]
-
-your accessible networks: NN
+```
 
 STP) dir data/001 (change the directory where files are saved)
 STP) evt 2020/11/30,13:41:40.0 35.75 129.38 9.0 0.9(ML) O(-200) O(600) NN 030D DPZ (-200 to 600 s to origin time)
