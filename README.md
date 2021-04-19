@@ -47,6 +47,25 @@ Type help(h) to see usage.
 ---------------------------
 ```
 
+### downloading the sac files for an earthquake.
+```
+evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(1800) 7D % -- BHZ
+1   2                       3        4         5     6        7       8       9  1011 12
+1: command name
+2: yyyy/mm/dd,hh:mm:ss(.sss)
+3: latitude
+4: longitude
+5: depth
+6: magnitude(class of magnitude)
+7: Starting time in terms of origin time defined at '2'
+8: Ending time in terms of origin time defined at '2'
+9: network (%: wild card of *, _ wild card of ? in Linux)
+10: station (same above)
+11: location (same above)
+12: channel (same above)
+
+```
+
 STP) dir data/001 (change the directory where files are saved)
 STP) evt 2020/11/30,13:41:40.0 35.75 129.38 9.0 0.9(ML) O(-200) O(600) NN 030D DPZ (-200 to 600 s to origin time)
 STP) evt 2020/11/30,13:41:40.0 35.75 129.38 9.0 0.9(ML) P(-200) S(500) NN 030D DPZ (from P - 200 s to S + 500 s)
