@@ -161,5 +161,4 @@ input cmd01
 - [ ] Option to change 'O' into other phases, such as 'P' or 'S' (using raytracing program)
 
 ## Contact
-Hobin Lim, PhD, hbim76@gmail.com
-_Seoul National University_
+Hobin Lim, PhD, hbim76@gmail.com, _Seoul National University_
