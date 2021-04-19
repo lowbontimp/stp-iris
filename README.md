@@ -181,7 +181,7 @@ $) bg
 [Guidelines for IRIS DMC services](http://ds.iris.edu/ds/nodes/dmc/services/usage/)
 are requiring no more than *5 concurrent connections* and no more than *10 connections per second*.
 Avoid to run multiple `stp-iris.pl` simultaneously. 
-Also, `stp-iris.pl` sleeps for a while if the average number of connections exceeds a threshold.
+Also, `stp-iris.pl` sleeps for a while when the average number of connections exceeds a threshold.
 Removing this part in `stp-iris.pl` is not recommended.
 
 ## List of to do
