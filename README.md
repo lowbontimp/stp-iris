@@ -24,17 +24,23 @@ and so on.
 
 
 ## Tutorial
-Starting `< stp-iris.pl>`
+Starting `stp-iris.pl`.
 ```
 $) chmod +x ./stp-iris.pl
 $) ./stp-iris.pl
 ```
-
+Permit to make a work directory.
+```
+./.tmpdir.aJyrZ0RjID782P88 will be generated. [y/n]:
+```
+You might see below.
 ```
 +++++++++++++++++++++++++++
-| SAC Transfer Protocol   |
-|    (----.---.--.--)     |
+|   SAC transport tool    |
+|(http://service.iris.edu)|
 +++++++++++++++++++++++++++
+
+Version 1.00 (Apr. 2021)
 
 Type help(h) to see usage.
 
