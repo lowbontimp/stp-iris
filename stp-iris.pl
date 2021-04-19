@@ -50,10 +50,11 @@ sub evt_single {
 	my ($ymdhms,$net,$sta,$loc,$comp,$winformat1,$winformat2)=@_;
 	
 	#if ( ($skip eq "on") and (-e $outputfilename) ){
-	if ( ($skip eq "on") and (-e "$tmpdir/$outputfilename") ){
-		print "skip: $outputfilename\n";
-		goto skip_evt_single;
-	}
+	#print "path: $outputdir/$outputfilename\n" ;
+	#if ( ($skip eq "on") and (-e "$outputdir/$outputfilename") ){
+	#	print "skip: $outputfilename\n";
+	#	goto skip_evt_single;
+	#}
 	&win2_single_evt($ymdhms,$net,$sta,$loc,$comp,$winformat1,$winformat2);
 	skip_evt_single:
 }
@@ -74,6 +75,11 @@ sub win2_single_evt {
     }
 	my $t1 = "$year_i-$month_i-${day_i}T$hour_i:$min_i:$sec_i" ;
 	my $t2 = "$year_f-$month_f-${day_f}T$hour_f:$min_f:$sec_f" ;
+
+	if ( ($skip eq "on") and (-e "$outputdir/$outputfilename") ){
+		print "skip: $outputdir/$outputfilename\n";
+		goto skip_win2_single_evt ;
+	}
 	&getsac($net,$sta,$loc,$comp,$t1,$t2,$outputPath,$tmpdir,$tmpsac) ;
     &sacMerg("$tmpdir/$tmpsac",$year_i,$month_i,$day_i,$hour_i,$min_i,$sec_i,$net,$sta,$loc,$comp,$outputdir,$outputfilename) ;
 	#system(join(" ","rm -f $tmpsac"));

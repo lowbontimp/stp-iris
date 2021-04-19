@@ -2,3 +2,4 @@ test01/
 v*.pl
 MEMO
 upload*.sh
+cp*.sh
