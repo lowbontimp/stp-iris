@@ -90,7 +90,7 @@ saved: ./20150908081953.7D.J20D.--.BHZ.sac
 saved: ./20150908081953.7D.M16D.--.BHZ.sac
 ```
 ### Define the box where the stations are searched
-Go to edit mode (`vi ./stp-iris.pl`) and set the line below properly for your purpose.
+Go to edit mode (`vi ./stp-iris.pl`) and change the lines below for your purpose.
 ```
 my $box ;
 $box .= "&minlat=38.8533" ;
