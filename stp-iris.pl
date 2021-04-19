@@ -36,7 +36,8 @@ my $skip = "off"; #on or off
 #<< Option for merge in sac >>#
 #my $mergeoption = "gap zero overlap average" ;
 
-my $box = "&minlat=-90&maxlat=90&minlon=-180&maxlon=180" ;
+#my $box = "&minlat=-90&maxlat=90&minlon=-180&maxlon=180" ;
+my $box = "&minlat=38.8533&maxlat=51.149&minlon=-134.0732&maxlon=-122.3837" ;
 
 
 {
@@ -74,7 +75,8 @@ sub win2_single_evt {
 	my $t2 = "$year_f-$month_f-${day_f}T$hour_f:$min_f:$sec_f" ;
 	&getsac($net,$sta,$loc,$comp,$t1,$t2,$outputPath,$tmpdir,$tmpsac) ;
     &sacMerg("$tmpdir/$tmpsac",$year_i,$month_i,$day_i,$hour_i,$min_i,$sec_i,$net,$sta,$loc,$comp,$outputdir,$outputfilename) ;
-	system(join(" ","rm -f $tmpsac"));
+	#system(join(" ","rm -f $tmpsac"));
+	system(join(" ","rm -f $tmpdir/$tmpsac $outputPath"));
 	$outputfilename="0";
 	skip_win2_single_evt:
 }
@@ -312,25 +314,27 @@ sub splitResp {
 
 sub mkTmpDir{
 	#my $username = $ENV{LOGNAME} || $ENV{USER} || getpwuid($<);
+	&cleaningTmpdir();
 	if (not -e "$tmpdir"){
 		&resp_mkTmpDir();
 	}
-	&cleaningTmpdir();
+	#&cleaningTmpdir();
 	mkdir "$tmpdir/SAC" if not -e "$tmpdir/SAC";
-	&cleaningSACdir();
+	#&cleaningSACdir();
 }
 
 sub cleaningTmpdir {
     if(not &is_folder_empty("$tmpdir")){
-        system(join(" ","rm -rf $tmpdir/*"));
+        #system(join(" ","rm -rf $tmpdir/*"));
+        system(join(" ","rm -rf $tmpdir"));
     }
 }
 
-sub cleaningSACdir {
-	if(not &is_folder_empty("$tmpdir/SAC")){
-		system(join(" ","rm -f $tmpdir/SAC/*"));
-	}
-}
+#sub cleaningSACdir {
+#	if(not &is_folder_empty("$tmpdir/SAC")){
+#		system(join(" ","rm -f $tmpdir/SAC/*"));
+#	}
+#}
 
 sub help {
 	print STDERR "
@@ -510,6 +514,9 @@ sub resp_mkTmpDir {
 	my $ans=<>; chomp($ans);
 	if ($ans =~ m{y}i){
 		mkdir "$tmpdir";
+		if (not -e "$tmpdir/SAC" or not-e $tmpdir){
+			&File::Path::make_path("$tmpdir/SAC") ;
+		}
 	}elsif($ans =~ m{n}i){
 		die "\n";
 	}else{
@@ -687,7 +694,8 @@ sub win1_single {
 	my $t2 = "$year_f-$month_f-${day_f}T$hour_f:$min_f:$sec_f" ;
 	&getsac($net,$sta,$loc,$comp,$t1,$t2,$outputPath,$tmpdir,$tmpsac) ;
     &sacMerg("$tmpdir/$tmpsac",$year_i,$month_i,$day_i,$hour_i,$min_i,$sec_i,$net,$sta,$loc,$comp,$outputdir,$outputfilename) ;
-	system(join(" ","rm -f $tmpsac"));
+	#system(join(" ","rm -f $tmpsac"));
+	system(join(" ","rm -f $tmpdir/$tmpsac $outputPath"));
 	$outputfilename="0";
 	skip_win1_single:
 }
@@ -738,7 +746,8 @@ sub win2_single {
 	my $t2 = "$year_f-$month_f-${day_f}T$hour_f:$min_f:$sec_f" ;
 	&getsac($net,$sta,$loc,$comp,$t1,$t2,$outputPath,$tmpdir,$tmpsac) ;
     &sacMerg("$tmpdir/$tmpsac",$year_i,$month_i,$day_i,$hour_i,$min_i,$sec_i,$net,$sta,$loc,$comp,$outputdir,$outputfilename) ;
-	system(join(" ","rm -f $tmpsac"));
+	#system(join(" ","rm -f $tmpsac"));
+	system(join(" ","rm -f $tmpdir/$tmpsac $outputPath"));
 	$outputfilename="0";
 	skip_win2_single:
 }
