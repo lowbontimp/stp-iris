@@ -1,3 +1,0 @@
-git add --all .
-git commit -m c01
-git push origin main

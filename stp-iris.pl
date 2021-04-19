@@ -516,7 +516,7 @@ sub resp_mkTmpDir {
 	my $ans=<>; chomp($ans);
 	if ($ans =~ m{y}i){
 		mkdir "$tmpdir";
-		if (not -e "$tmpdir/SAC" or not-e $tmpdir){
+		if (not -e "$tmpdir/SAC" or not -e $tmpdir){
 			&File::Path::make_path("$tmpdir/SAC") ;
 		}
 	}elsif($ans =~ m{n}i){
