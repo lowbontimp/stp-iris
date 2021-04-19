@@ -147,7 +147,7 @@ quit
 help
 ```
 ## Example 1 (many teleseismic earthquakes)
-Convert an event file, _cascadia1234.events_, from the program [JWEED](https://ds.iris.edu/ds/nodes/dmc/software/downloads/jweed/) to an input file of `stp-iris.pl`.
+Convert the event file, _cascadia1234.events_, from the program [JWEED](https://ds.iris.edu/ds/nodes/dmc/software/downloads/jweed/) to an input file of `stp-iris.pl`.
 ```
 $) jweed2stp.pl > cmd01
 ```
