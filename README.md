@@ -47,10 +47,12 @@ Type help(h) to see usage.
 ---------------------------
 ```
 
-### downloading the sac files for an earthquake.
+### Downloading the sac files for an earthquake.
 ```
-evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(1800) 7D % -- BHZ
+STP) evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(1800) 7D % -- BHZ
 1   2                       3        4         5     6        7       8       9  1011 12
+```
+```
 1: command name
 2: yyyy/mm/dd,hh:mm:ss(.sss)
 3: latitude
@@ -59,91 +61,58 @@ evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(1800) 7D
 6: magnitude(class of magnitude)
 7: Starting time in terms of origin time defined at '2'
 8: Ending time in terms of origin time defined at '2'
-9: network (%: wild card of *, _ wild card of ? in Linux)
+9: network (wild cards: % = * and _ = ? in Linux)
 10: station (same above)
 11: location (same above)
 12: channel (same above)
-
+```
+Output looks like this.
+```
+saved: ./20150908081953.7D.FS04D.--.BHZ.sac
+saved: ./20150908081953.7D.FS08D.--.BHZ.sac
+saved: ./20150908081953.7D.FS44D.--.BHZ.sac
+saved: ./20150908081953.7D.G10D.--.BHZ.sac
+saved: ./20150908081953.7D.G33D.--.BHZ.sac
+saved: ./20150908081953.7D.G37D.--.BHZ.sac
+saved: ./20150908081953.7D.J20D.--.BHZ.sac
+saved: ./20150908081953.7D.M16D.--.BHZ.sac
 ```
 
-STP) dir data/001 (change the directory where files are saved)
-STP) evt 2020/11/30,13:41:40.0 35.75 129.38 9.0 0.9(ML) O(-200) O(600) NN 030D DPZ (-200 to 600 s to origin time)
-STP) evt 2020/11/30,13:41:40.0 35.75 129.38 9.0 0.9(ML) P(-200) S(500) NN 030D DPZ (from P - 200 s to S + 500 s)
-STP) dir data/002
-STP) evt 2020/11/30,13:41:40.0 35.75 129.38 9.0 0.9(ML) O(-200) S(500) NN 040D DP_ (3 components)
-STP) evt 2020/11/30,13:41:40.0 35.75 129.38 9.0 0.9(ML) O(-200) S(500) NN % DPZ (all stations)
+### Changing directory where files are saved
+```
+STP) dir data01/001
+STP) evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(1800) 7D % -- BHZ
+```
+Output looks like this.
+```
+saved: ./data01/001/20150908081953.7D.FS04D.--.BHZ.sac
+saved: ./data01/001/20150908081953.7D.FS08D.--.BHZ.sac
+saved: ./data01/001/20150908081953.7D.FS44D.--.BHZ.sac
+saved: ./data01/001/20150908081953.7D.G10D.--.BHZ.sac
+saved: ./data01/001/20150908081953.7D.G33D.--.BHZ.sac
+saved: ./data01/001/20150908081953.7D.G37D.--.BHZ.sac
+saved: ./data01/001/20150908081953.7D.J20D.--.BHZ.sac
+saved: ./data01/001/20150908081953.7D.M16D.--.BHZ.sac
+```
 
-STP) quit (to quit)
+### Input list of commands
+```
+STP) input filepath
+```
+where the filepath contains multiple lines of the commands.
+
+### Quit
+```
+quit
+```
+
+### Help
+```
+help
+```
 
 
-See also input, help, sta, etc.
-
---Note--
-Using P( ) or S( ) flag slows down the process. O( ) is recommended.
-
-
-usage:
- 1. win NET STA COMP yyyy/mm/dd,hh:mm:ss.ms span(unit)
-    NET:
-      network code or % for all networks
-    STA:
-      station code or % for all stations
-    COMP:
-      component such as BHZ or % for all components.
-    span a length of window you want to cut and its unit
-	unit can be any one of Y(year), M(month), D(day)
-      , h(hour), m(min), s(sec).
-    e.g., 
-      win % % BHZ 2010/01/01,00:00:00 1h
-      win KS GAHB BH_ 2010/01/01,00:00:00 1h
-      (% and _ are wild cards that are similar with * and ? in Linux)
- 2. win NET STA COMP yyyy/mm/dd,hh:mm:ss.ms yyyy/mm/dd,hh:mm:ss.ms 
-   	e.g.,
-      win KS GAHB BHZ 2010/01/01,00:00:00 2010/01/01,01:00:00
-
- 3. !(linux command)
-    For example, 
-      !ls
-
- 4. dir output_directory (.)
-    You can change the directory where the output sac files are saved.
-    The directory will be automatically made.
 
  5. input filepath
     The file contains the commands of the stp.
-
- 6. sta
-    station information.
-
- 7. seto time_o (in sec)
-    The O marker is set to yyyy/mm/dd,hh:mm:ss.ms + time_o
-	default=0
-    Maybe it works, but I have not tested this command.
-
- 8. evt origin_time lat long depth mag(class) P|S|O(+t1) P|S|O(+t2) net sta chn
-    e.g.,
-      evt 2010/01/01,12:34:56.5 30 120 123.5 5.6(mb) P(-100) S(200) KS % BHZ
-      evt 2010/01/10,00:27:41.85 40.6654 -124.4669 20.6 6.5(MW) P(-50) P(200) K_ % BHZ
-      evt 2013/04/20,00:02:47.0 30.31 102.89 14 6.6(MW) P(-100) P(100) K_ % BH_
-      evt 2013/04/20,00:02:47.0 30.31 102.89 14 6.6(MW) O(-200) O(500) K_ % BH_
-      evt 2016/09/12,10:44:32.0 35.77 129.19 10 5.8(M) O(-200) O(500) KS % HHZ
-      evt 2017/11/15,05:29:32.0 36.12 129.36 9 5.4(Mw) O(-200) S(500) KS % HGZ
-
-      'O' denotes origin time. It is useful when you do not want to waste time in ray-tracing (taup).
-      If wanting to use other phase, such as PP, you should modify a subroutine 'trvt' below.
-
- 9. dec factor1 [factor2...]     
-     downsampling sacfiles by decimate command of the SAC(v101.6a)
-     where the factors should be between 2 and 6.
-     e.g.,
-       dec 2 5     (for downsampling from 100 Hz to 10 Hz)
-       dec 2 5 2 5 (for downsampling from 100 Hz to 1 Hz)
-
- 10. skip on|off (off is default)
-     If the output file exists at an path for sac file to be saved,
-     `stp' is skipped. It works only with `evt'.
-
- 11. quit(q)
-
-  ---------------------------------------------
   Email me (hbim76@gmail.com) for notification of an update.
