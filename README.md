@@ -170,7 +170,6 @@ STP) input cmd01
 CTRL+Z
 $) bg
 ```
-`nohup` makes `stp-iris.pl` immune to an unexpected shutdown of terminal.
 
 ## List of to do
 - [ ] Option to change 'O' into other phases, such as 'P' or 'S' (using raytracing program)
