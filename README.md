@@ -120,7 +120,7 @@ evt 2015/09/12,13:38:01.000 41.9 142.65 49.0 5.5(mwc) O(-200) O(1800) 7D % -- BH
 evt 2015/09/12,13:38:01.000 41.9 142.65 49.0 5.5(mwc) O(-200) O(1800) 7D % -- HHZ
 !zip -r data01.zip data01
 ```
-where `!` enables running a linux command.
+where `!` enables one to run a linux command.
 
 ### Quit
 ```
@@ -132,6 +132,8 @@ quit
 help
 ```
 
+## List of to do
+- [ ] Option to change `O` into other phases, such as `P` or `S`
 
 ## Contact
 Hobin Lim, PhD, hbim76@gmail.com
