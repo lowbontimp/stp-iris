@@ -7,12 +7,12 @@
 
 You should install perl libraries below. 
 
-Term::ReadLine
-LWP::UserAgent
-HTTP::Request
-Date::Calc::XS
-IO::Uncompress::Unzip
-File::Path
+* Term::ReadLine
+* LWP::UserAgent
+* HTTP::Request
+* Date::Calc::XS
+* IO::Uncompress::Unzip
+* File::Path
 
 Perl library can be easily installed using 'cpan'
 
