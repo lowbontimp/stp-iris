@@ -12,7 +12,7 @@ You should install perl libraries below.
 * IO::Uncompress::Unzip
 * File::Path
 
-Perl library can be easily installed using 'cpan'
+Perl library can be easily installed using `cpan`
 
 ```
 $) cpan
