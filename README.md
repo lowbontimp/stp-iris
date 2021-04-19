@@ -36,7 +36,7 @@ Permit to make a working directory.
 You might see below.
 ```
 +++++++++++++++++++++++++++
-|   SAC transport tool    |
+|       stp-iris.pl       |
 |(http://service.iris.edu)|
 +++++++++++++++++++++++++++
 
