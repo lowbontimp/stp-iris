@@ -162,8 +162,8 @@ After turning on `stp-iris.pl`,
 input cmd01
 ```
 
-## Tip for running `stp-iris.pl` in background
-`stp-iris.pl` can run in background using a linux command [`nohup`](https://linux.die.net/man/1/nohup).
+## Tip for running it in background
+[`nohup`](https://linux.die.net/man/1/nohup) makes `stp-iris.pl` run in background and immune to an unexpected shutdown of terminal.
 ```
 $) nohup ./stp-iris.pl
 STP) input cmd01
