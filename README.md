@@ -101,7 +101,7 @@ input filepath
 ```
 where the _filepath_ contains multiple lines of the commands.
 
-As an example file is
+An example file is
 ```
 dir data01/1373
 evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(1800) 7D % -- BHZ
