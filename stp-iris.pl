@@ -49,7 +49,8 @@ my $box = "&minlat=38.8533&maxlat=51.149&minlon=-134.0732&maxlon=-122.3837" ;
 sub evt_single {
 	my ($ymdhms,$net,$sta,$loc,$comp,$winformat1,$winformat2)=@_;
 	
-	if ( ($skip eq "on") and (-e $outputfilename) ){
+	#if ( ($skip eq "on") and (-e $outputfilename) ){
+	if ( ($skip eq "on") and (-e "$tmpdir/$outputfilename") ){
 		print "skip: $outputfilename\n";
 		goto skip_evt_single;
 	}
@@ -327,6 +328,7 @@ sub cleaningTmpdir {
     if(not &is_folder_empty("$tmpdir")){
         #system(join(" ","rm -rf $tmpdir/*"));
         system(join(" ","rm -rf $tmpdir"));
+		&File::Path::make_path($tmpdir) ;
     }
 }
 
