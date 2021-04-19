@@ -81,6 +81,16 @@ saved: ./20150908081953.7D.G37D.--.BHZ.sac
 saved: ./20150908081953.7D.J20D.--.BHZ.sac
 saved: ./20150908081953.7D.M16D.--.BHZ.sac
 ```
+### Define the box where the stations are searched
+```
+my $box ;
+$box .= "&minlat=38.8533" ;
+$box .= "&maxlat=51.149" ;
+$box .= "&minlon=-134.0732" ;
+$box .= "&maxlon=-122.3837" ;
+```
+Use [IRIS's gmap](http://ds.iris.edu/gmap) to find a proper box.
+
 
 ### Changing directory where files are saved
 ```
