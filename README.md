@@ -188,5 +188,4 @@ Removing this part in `stp-iris.pl` is not recommended.
 - [ ] Option to change 'O' into other phases, such as 'P' or 'S' (using raytracing program)
 - [ ] Providing a quick way to download the response files
 
-## Contact
-Hobin Lim, PhD, hbim76@gmail.com, _Seoul National University_
+
