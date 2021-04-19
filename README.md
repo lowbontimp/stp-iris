@@ -3,9 +3,9 @@
 
 ## Strengh
 * It runs in command-line interface.
-* It is fast because raytracing is not performed.
-* It 
-
+* It is light. Computer's memory is used minimally.
+* It is fast. Raytracing is not performed to find a proper window of the data. 
+Options for dynamic window (e.g., window from 100 s before  P arrival to 300 s after S arrival) is under developement.
 
 ## Installation
 ### 1. Perl library
