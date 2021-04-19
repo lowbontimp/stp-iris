@@ -179,10 +179,10 @@ $) bg
 
 ## Self-control of rate of connection
 [Guidelines for IRIS DMC services](http://ds.iris.edu/ds/nodes/dmc/services/usage/)
-is requiring no more than *5 concurrent connections* and no more than *10 connections per second*.
-Avoid to run multiples `stp-iris.pl` for yourself. 
-`stp-iris.pl` sleeps for a while if the average number of connections exceeds a threshold.
-
+are requiring no more than *5 concurrent connections* and no more than *10 connections per second*.
+Avoid to run multiple `stp-iris.pl` simultaneously. 
+Also, `stp-iris.pl` sleeps for a while if the average number of connections exceeds a threshold.
+Removing this part in `stp-iris.pl` is not recommended.
 
 ## List of to do
 - [ ] Option to change 'O' into other phases, such as 'P' or 'S' (using raytracing program)
