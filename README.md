@@ -163,7 +163,7 @@ input cmd01
 ```
 
 ## Tip for running it in background
-[`nohup`](https://linux.die.net/man/1/nohup) makes `stp-iris.pl` run in background and immune to an unexpected shutdown of terminal.
+[`nohup`](https://linux.die.net/man/1/nohup) makes `stp-iris.pl` run in background and immune to an unexpected shutdown of terminal. It is advantageous when one downloads many data for a long time.
 ```
 $) nohup ./stp-iris.pl
 STP) input cmd01
