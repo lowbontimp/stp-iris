@@ -2,7 +2,7 @@
 `stp-iris.pl` is a perl script for downloading seismic data in the format of [SAC](http://ds.iris.edu/files/sac-manual/) from http://service.iris.edu on the command-line interface.
 
 ## Installation
-
+### Perl library
 You should install perl libraries below. 
 
 * Term::ReadLine
@@ -22,6 +22,10 @@ cpan> LWP::UserAgent
 and so on.
 ```
 
+### Setting the path of `sac`
+```
+my $sac = "/opt/sac/bin/sac" ;
+```
 
 ## Tutorial
 Starting `stp-iris.pl`.
