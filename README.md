@@ -22,7 +22,7 @@ cpan> install LWP::UserAgent
 and so on.
 ```
 
-### 2. Setting the path of `sac`
+### 2. Setting the path of [`sac`](https://ds.iris.edu/ds/nodes/dmc/software/downloads/sac/)
 ```
 my $sac = "/opt/sac/bin/sac" ;
 ```
