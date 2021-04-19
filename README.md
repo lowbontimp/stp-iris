@@ -1,5 +1,5 @@
 # stp-iris.pl
-
+`stp-iris.pl` is a perl script for downloading seismic data in the format of SAC from http://service.iris.edu on the command-line interface.
 
 ## Installation
 
@@ -103,19 +103,19 @@ where the _filepath_ contains multiple lines of the commands.
 
 An example file is
 ```
-dir data01/1373
+dir data01/001
 evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(1800) 7D % -- BHZ
 evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(1800) 7D % -- HHZ
-dir data01/1374
+dir data01/002
 evt 2015/09/09,07:05:44.490 -49.5321 -116.3317 10.0 5.9(mwb) O(-200) O(1800) 7D % -- BHZ
 evt 2015/09/09,07:05:44.490 -49.5321 -116.3317 10.0 5.9(mwb) O(-200) O(1800) 7D % -- HHZ
-dir data01/1375
+dir data01/003
 evt 2015/09/11,21:19:18.000 -5.98 146.66 26.0 5.5(mwc) O(-200) O(1800) 7D % -- BHZ
 evt 2015/09/11,21:19:18.000 -5.98 146.66 26.0 5.5(mwc) O(-200) O(1800) 7D % -- HHZ
-dir data01/1376
+dir data01/004
 evt 2015/09/11,21:19:18.660 -5.9797 146.6564 26.0 5.5(mww) O(-200) O(1800) 7D % -- BHZ
 evt 2015/09/11,21:19:18.660 -5.9797 146.6564 26.0 5.5(mww) O(-200) O(1800) 7D % -- HHZ
-dir data01/1377
+dir data01/005
 evt 2015/09/12,13:38:01.000 41.9 142.65 49.0 5.5(mwc) O(-200) O(1800) 7D % -- BHZ
 evt 2015/09/12,13:38:01.000 41.9 142.65 49.0 5.5(mwc) O(-200) O(1800) 7D % -- HHZ
 !zip -r data01.zip data01
