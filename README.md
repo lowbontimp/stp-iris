@@ -4,7 +4,7 @@
 ## Strengh
 * It runs in command-line interface.
 * It is light. Computer's memory is used minimally.
-* It is fast. Raytracing is not performed to find a proper window of the data. 
+* It is fast. Raytracing is not performed to find a proper window.
 Options for dynamic window (e.g., window from 100 s before  P arrival to 300 s after S arrival) is under developement.
 
 ## Installation
