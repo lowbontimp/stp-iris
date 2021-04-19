@@ -126,6 +126,7 @@ where the _filepath_ contains multiple lines of the commands.
 
 An example file is
 ```
+skip on
 dir data01/001
 evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(1800) 7D % -- BHZ
 evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(1800) 7D % -- HHZ
@@ -143,7 +144,7 @@ evt 2015/09/12,13:38:01.000 41.9 142.65 49.0 5.5(mwc) O(-200) O(1800) 7D % -- BH
 evt 2015/09/12,13:38:01.000 41.9 142.65 49.0 5.5(mwc) O(-200) O(1800) 7D % -- HHZ
 !zip -r data01.zip data01
 ```
-where `!` enables one to run a linux command.
+where `skip on` lets `stp-iris.pl` skip downloading and overwriting if the file exists and `!` enables one to run a linux command.
 
 ### Quit
 ```
