@@ -333,7 +333,8 @@ sub mkTmpDir{
 }
 
 sub cleaningTmpdir {
-    if(not &is_folder_empty("$tmpdir")){
+    #if(not &is_folder_empty("$tmpdir")){
+    if(-e $tmpdir){
         #system(join(" ","rm -rf $tmpdir/*"));
         system(join(" ","rm -rf $tmpdir"));
 		&File::Path::make_path($tmpdir) ;
@@ -534,11 +535,11 @@ sub resp_mkTmpDir {
 	}
 }
 
-sub is_folder_empty {
-    my ($dirname) = @_;
-    opendir(my $dh, $dirname) or die "Not a directory";
-    return scalar(grep { $_ ne "." && $_ ne ".." } readdir($dh)) == 0;
-}
+#sub is_folder_empty {
+#    my ($dirname) = @_;
+#    opendir(my $dh, $dirname) or die "Not a directory";
+#    return scalar(grep { $_ ne "." && $_ ne ".." } readdir($dh)) == 0;
+#}
 
 sub outputWinformat {
 	my ($year,$month,$day,$hour,$min,$sec)=@_;
