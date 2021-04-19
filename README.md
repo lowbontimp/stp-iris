@@ -149,7 +149,7 @@ help
 ## Example 1 (directory ex01)
 Convert an event file, _cascadia1234.events_ from the program [JWEED](https://ds.iris.edu/ds/nodes/dmc/software/downloads/jweed/) to an input file of `stp-iris.pl`.
 ```
-jweed2stp.pl > cmd01
+$) jweed2stp.pl > cmd01
 ```
 After turning on `stp-iris-pl`,
 ```
