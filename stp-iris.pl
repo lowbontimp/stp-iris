@@ -12,8 +12,9 @@ use File::Path qw (make_path) ;
 my $version = "1.00" ;
 
 my $sac = "/home/hbim/downloads/SAC101.6a/etc/sac-101.6a/build/bin/sac" ;
-my $parameterfilename = "./parameter.dat" ;
-my $taup     =&getscalar($parameterfilename,"taup") ;
+
+#my $parameterfilename = "./parameter.dat" ;
+#my $taup     =&getscalar($parameterfilename,"taup") ;
 
 my $re="(?:(?i)(?:[-+]?)(?:(?=[.]?[0123456789])(?:[0123456789]*)(?:(?:[.])(?:[0123456789]{0,}))?)(?:(?:[E])(?:(?:[-+]?)(?:[0123456789]+))|))"; # regular expression for general real number.
 my $int = "(?:(?:[-+]?)(?:[0123456789]+))";
@@ -25,7 +26,7 @@ my $outputdir=".";
 my $decimation="off";
 my @factors = ();
 my $tmpdir="./.tmpdir";
-my $velocitymodel="ak135";
+#my $velocitymodel="ak135";
 my ($phasename1_g,$trvt1_g,$phasename2_g,$trvt2_g)=(-12345,-12345,-12345,-12345);
 my ($evla_g,$evlo_g,$evdp_g)=(-12345,-12345,-12345);
 my ($evmag_g,$evmagtyp_g) = (-12345,-12345);
@@ -36,8 +37,12 @@ my $skip = "off"; #on or off
 #<< Option for merge in sac >>#
 #my $mergeoption = "gap zero overlap average" ;
 
-#my $box = "&minlat=-90&maxlat=90&minlon=-180&maxlon=180" ;
-my $box = "&minlat=38.8533&maxlat=51.149&minlon=-134.0732&maxlon=-122.3837" ;
+#my $box = "&minlat=-90&maxlat=90&minlon=-180&maxlon=180" ; #global
+my $box ;
+$box .= "&minlat=38.8533" ;
+$box .= "&maxlat=51.149" ;
+$box .= "&minlon=-134.0732" ;
+$box .= "&maxlon=-122.3837" ;
 
 
 {
