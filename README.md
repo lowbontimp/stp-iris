@@ -24,6 +24,7 @@ and so on.
 
 
 ## Tutorial
+Starting `< stp-iris.pl>`
 ```
 $) chmod +x ./stp-iris.pl
 $) ./stp-iris.pl
