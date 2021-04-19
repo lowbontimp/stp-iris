@@ -1,5 +1,6 @@
 # stp-iris.pl
-`stp-iris.pl` is a perl script for downloading seismic waveform data in the format of [SAC](http://ds.iris.edu/files/sac-manual/) from http://service.iris.edu on the command-line interface.
+`stp-iris.pl` is a perl script for downloading seismic waveform data in the format of [SAC](http://ds.iris.edu/files/sac-manual/) 
+from [IRIS Web Services](http://service.iris.edu) on the command-line interface.
 
 ## Strengh
 * It runs in command-line interface.
@@ -175,6 +176,13 @@ STP) input cmd01
 CTRL+Z
 $) bg
 ```
+
+## Self-control of rate of connection
+[Guidelines for IRIS DMC services](http://ds.iris.edu/ds/nodes/dmc/services/usage/)
+is requiring no more than *5 concurrent connections* and no more than *10 connections per second*.
+Avoid to run multiples `stp-iris.pl` for yourself. 
+`stp-iris.pl` sleeps for a while if the average number of connections exceeds a threshold.
+
 
 ## List of to do
 - [ ] Option to change 'O' into other phases, such as 'P' or 'S' (using raytracing program)
