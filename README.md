@@ -29,7 +29,7 @@ Starting `stp-iris.pl`.
 $) chmod +x ./stp-iris.pl
 $) ./stp-iris.pl
 ```
-Permit to make a work directory.
+Permit to make a working directory.
 ```
 ./.tmpdir.aJyrZ0RjID782P88 will be generated. [y/n]:
 ```
