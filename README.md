@@ -28,7 +28,8 @@ my $sac = "/opt/sac/bin/sac" ;
 ```
 
 ## Tutorial
-Starting `stp-iris.pl`.
+### Start
+Start `stp-iris.pl`.
 ```
 $) chmod +x ./stp-iris.pl
 $) ./stp-iris.pl
@@ -145,6 +146,16 @@ quit
 ```
 help
 ```
+## Example 1 (ex01)
+Convert an event file, _cascadia1234.events_ from the program [JWEED](https://ds.iris.edu/ds/nodes/dmc/software/downloads/jweed/) to an input file of `stp-iris.pl`.
+```
+jweed2stp.pl > cmd01
+```
+After turning on `stp-iris-pl`,
+```
+input cmd01
+```
+
 
 ## List of to do
 - [ ] Option to change 'O' into other phases, such as 'P' or 'S' (using raytracing program)
