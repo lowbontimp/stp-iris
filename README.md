@@ -132,7 +132,6 @@ help
 ```
 
 
-
- 5. input filepath
-    The file contains the commands of the stp.
-  Email me (hbim76@gmail.com) for notification of an update.
+## Contact
+Hobin Lim, PhD, hbim76@gmail.com
+_Seoul National University_
