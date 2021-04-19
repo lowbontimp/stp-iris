@@ -133,7 +133,7 @@ help
 ```
 
 ## List of to do
-- [ ] Option to change `O` into other phases, such as `P` or `S` (using raytracing program)
+- [ ] Option to change 'O' into other phases, such as 'P' or 'S' (using raytracing program)
 
 ## Contact
 Hobin Lim, PhD, hbim76@gmail.com
