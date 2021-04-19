@@ -49,8 +49,8 @@ Type help(h) to see usage.
 
 ### Downloading the sac files for an earthquake.
 ```
-STP) evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(1800) 7D % -- BHZ
-     1   2                       3        4         5     6        7       8       9  1011 12
+evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(1800) 7D % -- BHZ
+1   2                       3        4         5     6        7       8       9  1011 12
 ```
 ```
 1: command name
@@ -80,8 +80,8 @@ saved: ./20150908081953.7D.M16D.--.BHZ.sac
 
 ### Changing directory where files are saved
 ```
-STP) dir data01/001
-STP) evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(1800) 7D % -- BHZ
+dir data01/001
+evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(1800) 7D % -- BHZ
 ```
 Output looks like this.
 ```
@@ -97,7 +97,7 @@ saved: ./data01/001/20150908081953.7D.M16D.--.BHZ.sac
 
 ### Input list of commands
 ```
-STP) input _filepath_
+input _filepath_
 ```
 where the filepath contains multiple lines of the commands.
 
