@@ -177,7 +177,7 @@ CTRL+Z
 $) bg
 ```
 
-## Self-control of rate of connection
+## Self-controlling rate of connection
 [Guidelines for IRIS DMC services](http://ds.iris.edu/ds/nodes/dmc/services/usage/)
 are requiring no more than *5 concurrent connections* and no more than *10 connections per second*.
 Avoid to run multiple `stp-iris.pl` simultaneously. 
