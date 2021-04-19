@@ -151,7 +151,7 @@ Convert the event file, _cascadia1234.events_ made by the program [JWEED](https:
 ```
 $) jweed2stp.pl > cmd01
 ```
-After turning on `stp-iris-pl`,
+After turning on `stp-iris.pl`,
 ```
 input cmd01
 ```
