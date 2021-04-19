@@ -29,6 +29,7 @@ and so on.
 ```
 
 ### 2. Setting the path of [`sac`](https://ds.iris.edu/ds/nodes/dmc/software/downloads/sac/)
+Go to edit mode (`vi ./stp-iris.pl`) and set the line below properly for your system.
 ```
 my $sac = "/opt/sac/bin/sac" ;
 ```
@@ -89,6 +90,7 @@ saved: ./20150908081953.7D.J20D.--.BHZ.sac
 saved: ./20150908081953.7D.M16D.--.BHZ.sac
 ```
 ### Define the box where the stations are searched
+Go to edit mode (`vi ./stp-iris.pl`) and set the line below properly for your purpose.
 ```
 my $box ;
 $box .= "&minlat=38.8533" ;
