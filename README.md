@@ -71,8 +71,8 @@ evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(1800) 7D
 4: longitude
 5: depth
 6: magnitude (class of magnitude)
-7: Starting time in terms of origin time defined at '2'
-8: Ending time in terms of origin time defined at '2'
+7: starting time in terms of origin time defined at '2'
+8: ending time in terms of origin time defined at '2'
 9: network (wild cards: % = * and _ = ? in Linux)
 10: station (same above)
 11: location (same above)
