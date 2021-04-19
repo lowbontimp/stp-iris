@@ -51,7 +51,7 @@ Type help(h) to see usage.
 ---------------------------
 ```
 
-### Downloading the sac files for an earthquake.
+### Downloading the sac files for an earthquake
 ```
 evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(1800) 7D % -- BHZ
 1   2                       3        4         5     6        7       8       9  1011 12
