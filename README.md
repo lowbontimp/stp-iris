@@ -170,6 +170,10 @@ STP) input cmd01
 CTRL+Z
 $) bg
 ```
+You can take it foreground by `fg`.
+```
+$) fg
+```
 
 ## List of to do
 - [ ] Option to change 'O' into other phases, such as 'P' or 'S' (using raytracing program)
