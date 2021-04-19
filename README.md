@@ -1,8 +1,11 @@
-How to use stp-iris.pl
+#stp-iris.pl
 
-**Installation**
 
-You should perl libraries below. 
+##How to use stp-iris.pl
+
+###Installation
+
+You should install perl libraries below. 
 
 Term::ReadLine
 LWP::UserAgent
@@ -13,14 +16,16 @@ File::Path
 
 Perl library can be easily installed using 'cpan'
 
+```
 $) cpan
 cpan> install Term::ReadLine
 cpan> LWP::UserAgent 
 ...
 and so on.
+```
 
 
-**Tutorial**
+###Tutorial
 $) chmod +x ./stp-iris.pl
 $) ./stp-iris.pl
 
