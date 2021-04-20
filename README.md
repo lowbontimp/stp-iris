@@ -63,8 +63,8 @@ Type help(h) to see usage.
 
 ### Downloading the sac files for an earthquake
 ```
-evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(1800) 7D % -- BHZ
-1   2                       3        4         5     6        7       8       9  1011 12
+STP) evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(1800) 7D % -- BHZ
+     1   2                       3        4         5     6        7       8       9  1011 12
 ```
 ```
 1: command name
@@ -105,8 +105,8 @@ Use [IRIS's gmap](http://ds.iris.edu/gmap) to find a proper box.
 
 ### Changing directory where files are saved
 ```
-dir data01/001
-evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(1800) 7D % -- BHZ
+STP) dir data01/001
+STP) evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(1800) 7D % -- BHZ
 ```
 Output looks like this.
 ```
@@ -122,7 +122,7 @@ saved: ./data01/001/20150908081953.7D.M16D.--.BHZ.sac
 
 ### Input list of commands
 ```
-input filepath
+STP) input filepath
 ```
 where the _filepath_ contains multiple lines of the commands.
 
@@ -151,22 +151,22 @@ evt 2015/09/12,13:38:01.000 41.9 142.65 49.0 5.5(mwc) O(-200) O(1800) 7D % -- HH
 
 ### Quit
 ```
-quit
+STP) quit
 ```
 
 ### Help
 ```
-help
+STP) help
 ```
 ## Example 1 (many teleseismic earthquakes)
 Convert the event file, _cascadia1234.events_ made by the program [JWEED](https://ds.iris.edu/ds/nodes/dmc/software/downloads/jweed/), to an input file of `stp-iris.pl`.
 Go to directory _ex01_ by `cd ex01`.
 ```
-$) jweed2stp.pl > cmd01
+$) ./jweed2stp.pl > cmd01
 ```
 After turning on `stp-iris.pl`,
 ```
-input cmd01
+STP) input cmd01
 ```
 
 ## Tip for running it in background
