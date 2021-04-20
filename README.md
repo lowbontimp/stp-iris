@@ -186,6 +186,7 @@ Removing this part in `stp-iris.pl` is not recommended.
 
 ## List of to do
 - [ ] Option to change 'O' into other phases, such as 'P' or 'S' (using raytracing program)
+- [ ] You should modify the source code if you want to change the format of file's name ($outputfilename)
 - [ ] Providing a quick way to download the response files
 
 
