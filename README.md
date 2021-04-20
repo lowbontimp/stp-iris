@@ -180,7 +180,7 @@ $) bg
 ## Self-controlling rate of connection
 [Guidelines for IRIS DMC services](http://ds.iris.edu/ds/nodes/dmc/services/usage/)
 are requiring no more than *5 concurrent connections* and no more than *10 connections per second*.
-Avoid to run too many processes of `stp-iris.pl` simultaneously. 
+Avoid running too many processes of `stp-iris.pl` simultaneously. 
 Also, `stp-iris.pl` sleeps for a while when the averaged number of connections exceeds a threshold.
 Removing or changing this part in `stp-iris.pl` needs carefulness.
 
