@@ -4,10 +4,11 @@ use strict ;
 use warnings ;
 use Term::ReadLine;
 use LWP::UserAgent ;
-use HTTP::Request () ;
+use HTTP::Request ;
 use Date::Calc::XS ;
 use IO::Uncompress::Unzip qw(unzip $UnzipError) ;
 use File::Path qw (make_path) ;
+use Time::HiRes qw (gettimeofday tv_interval usleep) ;
 
 my $version = "1.00" ;
 
@@ -33,6 +34,9 @@ my ($evmag_g,$evmagtyp_g) = (-12345,-12345);
 my $outputfilename="0";
 my $verbose=1; # 1 or 0;
 my $skip = "off"; #on or off
+my @times ;
+my $t0 = [gettimeofday] ;
+
 
 #<< Option for merge in sac >>#
 #my $mergeoption = "gap zero overlap average" ;
@@ -195,6 +199,7 @@ sub getnslcs {
 
 	#print "url(nslcs): $url\n" ;
 	
+	&check_rate() ;
 	my $req = HTTP::Request->new(GET => $url) ;
 	my $res = $ua->request($req) ;
 	
@@ -230,6 +235,7 @@ sub getsac {
 	
 	#print "url: $url\n" ;
 
+	&check_rate() ;
 	my $req = HTTP::Request->new(GET => $url) ;
 	
 	my $res = $ua->request($req) ;
@@ -769,3 +775,44 @@ sub win2_single {
 }
 
 
+sub check_rate {
+	my $tok = tv_interval ($t0, [gettimeofday]) ;
+	#print "@times\n" ;
+	#my ($tok)=@_ ;
+	if ($#times < 9){
+		push(@times,$tok) ;
+		goto skip_check_rate ;
+	}else{
+		shift(@times) ;
+		push(@times,$tok) ;
+	}
+	my $avgtime = &avgtime() ;
+	my $rate = 10/$avgtime ;
+	#print "$#times @times\n" ;
+	#printf("rate = %.2f connection/s\n",$rate) ;
+	#$rate should be less than 10.0
+	if ($rate > 5.0){
+		#5.0 number/s
+		usleep(1e6*0.5) ;
+		#print "sleep\n" ;
+		printf("sleep 0.5, rate = %.2f connection/s\n",$rate) ;
+	}
+	skip_check_rate:
+}
+
+sub avgtime {
+	my $s = 0 ;
+	my $avg = 0 ;
+	for (my $i=1; $i<=$#times; $i++){
+		$s += $times[$i] - $times[0] ;
+	}
+	$avg = $s/10 ;
+	&shiftzero() ;
+	return $avg ;
+}
+
+sub shiftzero {
+	for (my $i=0; $i<=$#times; $i++){
+		$times[$i] = $times[$i] - $times[0] ;
+	}
+}
