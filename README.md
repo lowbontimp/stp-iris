@@ -186,8 +186,8 @@ Also, `stp-iris.pl` sleeps for a while when the averaged number of connections e
 Removing or changing this part in `stp-iris.pl` needs carefulness.
 
 ## List of to do
-- [ ] Option to change 'O' into other phases, such as 'P' or 'S' (using raytracing program)
-- [ ] You should modify the source code if you want to change the format of file's name (`$outputfilename`)
-- [ ] Providing a quick way to download the response files
+- [ ] Option to change 'O' into other phases, such as 'P' or 'S' (using raytracing program).
+- [ ] Custom format of name of file. You should modify the source code if you want to change the format of file's name (`$outputfilename`).
+- [ ] Providing a quick way to download the response files.
 
 
