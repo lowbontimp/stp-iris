@@ -36,7 +36,8 @@ my $verbose=1; # 1 or 0;
 my $skip = "off"; #on or off
 
 #rate of connection
-my $number_averaged = 10 ; #10 is recommended
+my $sleeping_time = 1e6*0.5 ; #microsecond
+my $number_averaged = 5 ; #5 is recommended
 my $rate_threshold = 5.0 ; #should be <10.0 number/s
 my @times ;
 my $t0 = [gettimeofday] ;
@@ -778,8 +779,6 @@ sub win2_single {
 
 sub check_rate {
 	my $tok = tv_interval ($t0, [gettimeofday]) ;
-	#print "@times\n" ;
-	#my ($tok)=@_ ;
 	#if ($#times < 9){
 	if ($#times < $number_averaged-1){
 		push(@times,$tok) ;
@@ -788,34 +787,33 @@ sub check_rate {
 		shift(@times) ;
 		push(@times,$tok) ;
 	}
-	my $avgtime = &avgtime() ;
-	my $rate = $number_averaged/$avgtime ;
-	#print "$#times @times\n" ;
+	my $rate = &avgrate() ;
+	&shiftzero() ;
+	#print "2 $#times @times\n" ;
 	#printf("rate = %.2f connection/s\n",$rate) ;
 	#$rate should be less than 10.0
 	#if ($rate > 5.0){
 	if ($rate > $rate_threshold){
 		#5.0 number/s
-		usleep(1e6*0.5) ;
+		#usleep(1e6*0.5) ;
+		usleep($sleeping_time) ;
 		#print "sleep\n" ;
 		printf("sleep 0.5, rate = %.2f connection/s\n",$rate) if $verbose == 1 ;
 	}
 	skip_check_rate:
 }
 
-sub avgtime {
+sub avgrate {
 	my $s = 0 ;
 	my $avg = 0 ;
-	for (my $i=1; $i<=$#times; $i++){
-		$s += $times[$i] - $times[0] ;
-	}
-	$avg = $s/$number_averaged ;
-	&shiftzero() ;
+	$avg = $number_averaged/($times[$number_averaged-1]-$times[0]) ;
 	return $avg ;
 }
 
 sub shiftzero {
+	my $tok = tv_interval ($t0, [gettimeofday]) ;
 	for (my $i=0; $i<=$#times; $i++){
-		$times[$i] = $times[$i] - $times[0] ;
+		$times[$i] = $times[$i] - $tok ;
 	}
+	$t0 = [gettimeofday] ;
 }
