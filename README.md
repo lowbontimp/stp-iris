@@ -18,6 +18,7 @@ You should install perl libraries below.
 * Date::Calc::XS
 * IO::Uncompress::Unzip
 * File::Path
+* Time::HiRes
 
 Perl library can be easily installed using `cpan`
 

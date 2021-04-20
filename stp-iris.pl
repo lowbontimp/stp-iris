@@ -34,13 +34,14 @@ my ($evmag_g,$evmagtyp_g) = (-12345,-12345);
 my $outputfilename="0";
 my $verbose=1; # 1 or 0;
 my $skip = "off"; #on or off
+
+#rate of connection
+my $number_averaged = 10 ; #10 is recommended
+my $rate_threshold = 5.0 ; #should be <10.0 number/s
 my @times ;
 my $t0 = [gettimeofday] ;
 
-
-#<< Option for merge in sac >>#
-#my $mergeoption = "gap zero overlap average" ;
-
+#box option for searching the stations. no space is allowed
 #my $box = "&minlat=-90&maxlat=90&minlon=-180&maxlon=180" ; #global
 my $box ;
 $box .= "&minlat=38.8533" ;
@@ -49,11 +50,11 @@ $box .= "&minlon=-134.0732" ;
 $box .= "&maxlon=-122.3837" ;
 
 
-{
-	&mkTmpDir();
-	&initialMsg();
-	&waiting();
-}
+#main
+&mkTmpDir();
+&initialMsg();
+&waiting();
+
 
 sub evt_single {
 	my ($ymdhms,$net,$sta,$loc,$comp,$winformat1,$winformat2)=@_;
@@ -779,7 +780,8 @@ sub check_rate {
 	my $tok = tv_interval ($t0, [gettimeofday]) ;
 	#print "@times\n" ;
 	#my ($tok)=@_ ;
-	if ($#times < 9){
+	#if ($#times < 9){
+	if ($#times < $number_averaged-1){
 		push(@times,$tok) ;
 		goto skip_check_rate ;
 	}else{
@@ -787,15 +789,16 @@ sub check_rate {
 		push(@times,$tok) ;
 	}
 	my $avgtime = &avgtime() ;
-	my $rate = 10/$avgtime ;
+	my $rate = $number_averaged/$avgtime ;
 	#print "$#times @times\n" ;
 	#printf("rate = %.2f connection/s\n",$rate) ;
 	#$rate should be less than 10.0
-	if ($rate > 5.0){
+	#if ($rate > 5.0){
+	if ($rate > $rate_threshold){
 		#5.0 number/s
 		usleep(1e6*0.5) ;
 		#print "sleep\n" ;
-		printf("sleep 0.5, rate = %.2f connection/s\n",$rate) ;
+		printf("sleep 0.5, rate = %.2f connection/s\n",$rate) if $verbose == 1 ;
 	}
 	skip_check_rate:
 }
@@ -806,7 +809,7 @@ sub avgtime {
 	for (my $i=1; $i<=$#times; $i++){
 		$s += $times[$i] - $times[0] ;
 	}
-	$avg = $s/10 ;
+	$avg = $s/$number_averaged ;
 	&shiftzero() ;
 	return $avg ;
 }
