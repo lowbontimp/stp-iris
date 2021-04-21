@@ -11,22 +11,14 @@ from [IRIS Web Services](http://service.iris.edu) on the command-line interface.
 ### 1. Perl library
 You should install perl libraries below. 
 
-* Term::ReadLine
 * LWP::UserAgent
-* HTTP::Request
 * Date::Calc::XS
-* IO::Uncompress::Unzip
-* File::Path
-* Time::HiRes
 
 Perl library can be easily installed using `cpan`
 
 ```
-$) cpan
-cpan> install Term::ReadLine
-cpan> install LWP::UserAgent 
-...
-and so on.
+$) PERL_MM_USE_DEFAULT=1 perl -MCPAN -e 'install +LWP::UserAgent'
+$) PERL_MM_USE_DEFAULT=1 perl -MCPAN -e 'install +Date::Calc::XS'
 ```
 
 ### 2. Setting the path of [`sac`](https://ds.iris.edu/ds/nodes/dmc/software/downloads/sac/)
