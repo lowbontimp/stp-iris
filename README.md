@@ -129,7 +129,7 @@ saved: ./data01/001/20150908081953.7D.M16D.--.BHZ.sac
 
 Similarly, the directory where the response files are saved can be changed.
 ```
-dirresp path
+dirresp resp01
 ```
 Output becomes
 ```
@@ -213,6 +213,5 @@ Removing or changing this part in `stp-iris.pl` needs carefulness.
 ## List of to do
 - [ ] Option to change 'O' into other phases, such as 'P' or 'S' (using raytracing program).
 - [ ] Custom format of name of file. You should modify the source code if you want to change it (`$outputfilename`).
-- [ ] Providing a quick way to download the response files.
 
 
