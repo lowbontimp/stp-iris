@@ -129,7 +129,7 @@ saved: ./data01/001/20150908081953.7D.M16D.--.BHZ.sac
 
 Similarly, the directory where the response files are saved can be changed.
 ```
-dirresp resp01
+STP) dirresp resp01
 ```
 Output becomes
 ```
