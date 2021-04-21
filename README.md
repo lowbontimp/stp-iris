@@ -81,13 +81,21 @@ STP) evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(180
 ```
 Output looks like this.
 ```
+saved: ./RESP.7D.FS04D.--.BHZ
 saved: ./20150908081953.7D.FS04D.--.BHZ.sac
+saved: ./RESP.7D.FS08D.--.BHZ
 saved: ./20150908081953.7D.FS08D.--.BHZ.sac
+saved: ./RESP.7D.FS44D.--.BHZ
 saved: ./20150908081953.7D.FS44D.--.BHZ.sac
+saved: ./RESP.7D.G10D.--.BHZ
 saved: ./20150908081953.7D.G10D.--.BHZ.sac
+saved: ./RESP.7D.G33D.--.BHZ
 saved: ./20150908081953.7D.G33D.--.BHZ.sac
+saved: ./RESP.7D.G37D.--.BHZ
 saved: ./20150908081953.7D.G37D.--.BHZ.sac
+saved: ./RESP.7D.J20D.--.BHZ
 saved: ./20150908081953.7D.J20D.--.BHZ.sac
+saved: ./RESP.7D.M16D.--.BHZ
 saved: ./20150908081953.7D.M16D.--.BHZ.sac
 ```
 ### Define the box where the stations are searched
@@ -123,6 +131,18 @@ Similarly, the directory where the response files are saved can be changed.
 ```
 dirresp path
 ```
+Output becomes
+```
+saved: resp01/RESP.7D.FS04D.--.BHZ
+saved: resp01/RESP.7D.FS08D.--.BHZ
+saved: resp01/RESP.7D.FS44D.--.BHZ
+saved: resp01/RESP.7D.G10D.--.BHZ
+saved: resp01/RESP.7D.G33D.--.BHZ
+saved: resp01/RESP.7D.G37D.--.BHZ
+saved: resp01/RESP.7D.J20D.--.BHZ
+saved: resp01/RESP.7D.M16D.--.BHZ
+```
+
 
 ### Input list of commands
 ```
