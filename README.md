@@ -30,7 +30,7 @@ You can know where `sac` is by
 ```
 $) which sac
 ```
-If not installed, `sac` should be preinstalled at [here](https://ds.iris.edu/ds/nodes/dmc/software/downloads/sac/).
+If not installed, `sac` should be preinstalled at [IRIS's Software Downloads](https://ds.iris.edu/ds/nodes/dmc/software/downloads/sac/).
 
 ## Tutorial
 ### Start
