@@ -2,7 +2,7 @@
 `stp-iris.pl` is a perl script for downloading seismic waveform data in the format of [SAC](http://ds.iris.edu/files/sac-manual/) 
 from [IRIS Web Services](http://service.iris.edu) on the command-line interface.
 
-## Strengh
+## Strength
 * It runs in command-line interface.
 * It is light. Computer's memory is used minimally.
 * It is fast. Raytracing is not performed to find a proper window.
