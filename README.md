@@ -26,6 +26,10 @@ Go to edit mode (`vi ./stp-iris.pl`) and set the line below properly for your sy
 ```
 my $sac = "/opt/sac/bin/sac" ;
 ```
+You can know where `sac` is by
+```
+$) which sac
+```
 
 ## Tutorial
 ### Start
