@@ -119,6 +119,11 @@ saved: ./data01/001/20150908081953.7D.J20D.--.BHZ.sac
 saved: ./data01/001/20150908081953.7D.M16D.--.BHZ.sac
 ```
 
+Similarly, the directory where the response files are saved can be changed.
+```
+dirresp path
+```
+
 ### Input list of commands
 ```
 STP) input filepath
@@ -127,6 +132,7 @@ where the _filepath_ contains multiple lines of the commands.
 
 An example file is
 ```
+dirresp resp01
 skip on
 dir data01/001
 evt 2015/09/08,08:19:53.790 -33.1147 -178.2046 12.77 5.5(mww) O(-200) O(1800) 7D % -- BHZ
