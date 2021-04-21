@@ -24,6 +24,7 @@ my $logfile="./STP.log";
 #my $logfile="/dev/null";
 my $omarker=0;
 my $outputdir=".";
+my $outputdir_resp = "." ;
 my $decimation="off";
 my @factors = ();
 my $tmpdir="./.tmpdir.aJyrZ0RjID782P88";
@@ -91,6 +92,8 @@ sub win2_single_evt {
 		print "skip: $outputdir/$outputfilename\n";
 		goto skip_win2_single_evt ;
 	}
+	my $respname = "RESP.$net.$sta.$loc.$comp" ;
+	&getresp($net,$sta,$loc,$comp,$t1,$t2,$outputdir_resp,$respname) ;
 	&getsac($net,$sta,$loc,$comp,$t1,$t2,$outputPath,$tmpdir,$tmpsac) ;
     &sacMerg("$tmpdir/$tmpsac",$year_i,$month_i,$day_i,$hour_i,$min_i,$sec_i,$net,$sta,$loc,$comp,$outputdir,$outputfilename) ;
 	#system(join(" ","rm -f $tmpsac"));
@@ -257,6 +260,41 @@ sub getsac {
 
 }
 
+sub getresp {
+	my ($net,$sta,$loc,$chn,$t1,$t2,$outdir,$respname)=@_ ;
+	#http://service.iris.edu/irisws/resp/1/query?net=7D&sta=G30A&loc=--&cha=BHZ&start=2012-01-01T05:24:35.80&end=2012-01-01T05:57:55.80
+	my $output = 0 ;
+	my $ua = LWP::UserAgent->new ;
+	$ua->agent("MyApp/0.1") ;
+	
+	make_path($outdir) if not -e $outdir ;
+
+	my $outputpath = "$outdir/$respname" ;
+
+	&warning_file_exist($outputpath) ;
+
+	my $urlresp = "http://service.iris.edu/irisws/resp/1/query" ;
+	$urlresp .= "?net=$net&sta=$sta&loc=$loc&cha=$chn&start=$t1&end=$t2" ;
+	
+	&check_rate() ;
+	my $req = HTTP::Request->new(GET => $urlresp) ;
+	
+	my $res = $ua->request($req) ;
+	
+	if ($res->is_success) {
+		make_path($outdir) if not -e $outdir ;
+		open(my $f,">$outputpath") or die "error writing file  ($outputpath)\n" ;
+		binmode($f) ;
+		print $f $res->content ;
+		close($f) ;
+		print "saved: $outputpath\n" if $verbose > 0;
+		$output = 1 ;
+	}else{
+		#print $res->status_line, "\n";
+	}
+	return $output ;
+}
+
 sub waiting {
 	my $term = Term::ReadLine->new("stp");
 	$term->ornaments(0);
@@ -297,17 +335,21 @@ sub splitResp {
 	}elsif($input =~ m{^sta}i){
 		&stainfo();
 	}elsif(my ($omarker_input) = $input =~ m{^seto\s+($re)}i ){
-		print "changed the omarker from [$omarker] to ";
+		print "omarker from [$omarker] to ";
 		$omarker=$omarker_input;
 		print "[$omarker]\n";
 	}elsif( my ($OUTPUTDIR) = $input =~ m{^dir\s+(.+)}i){
-		print "changed the outputdir from [$outputdir] to ";
+		print "directory from [$outputdir] to ";
 		$outputdir = $OUTPUTDIR;
 		print "[$outputdir]\n";
+	}elsif( my ($OUTPUTDIR_RESP) = $input =~ m{^dirresp\s+(.+)}i){
+		print "resp's directory from [$outputdir_resp] to ";
+		$outputdir_resp = $OUTPUTDIR_RESP ;
+		print "[$outputdir_resp]\n";
 	}elsif( my ($evt_cmd) = $input =~ m{^evt\s+(.+)}i){
 		&evt_multi($evt_cmd);
 	}elsif( my ($factors) = $input =~ m{^dec\s+(.+)}i){
-		print "changed the decimation from [$decimation] to ";
+		print "decimation from [$decimation] to ";
 		if ($factors =~m{off}i) {
 			$decimation = "off";
 		}else{
@@ -425,8 +467,8 @@ usage:
 
  11. quit(q)
 
-  ---------------------------------------------
-  Email me (hbim76\@gmail.com) for notification of an update.
+ 12. dirresp name ($outputdir_resp)
+     where response files are saved.
 
 ";
 }
@@ -608,6 +650,7 @@ sub sacMerg {
 		0,0,0,0,0,$omarker);
 	my $jday=&Date::Calc::XS::Day_of_Year($year_i,$month_i,$day_i);
 	my ($sec_sac,$msec_sac)=&sec2sac_s_ms($sec_i);
+	&warning_file_exist("$outputdir/$outputfilename") ;
 	open(SAC,"|$sac >> $logfile 2>&1") or die "Error open sac.";
 	print SAC "r $input\n";
 	#print SAC "merge gap zero overlap average \n";
@@ -716,6 +759,8 @@ sub win1_single {
     }
 	my $t1 = "$year_i-$month_i-${day_i}T$hour_i:$min_i:$sec_i" ;
 	my $t2 = "$year_f-$month_f-${day_f}T$hour_f:$min_f:$sec_f" ;
+	my $respname = "RESP.$net.$sta.$loc.$comp" ;
+	&getresp($net,$sta,$loc,$comp,$t1,$t2,$outputdir_resp,$respname) ;
 	&getsac($net,$sta,$loc,$comp,$t1,$t2,$outputPath,$tmpdir,$tmpsac) ;
     &sacMerg("$tmpdir/$tmpsac",$year_i,$month_i,$day_i,$hour_i,$min_i,$sec_i,$net,$sta,$loc,$comp,$outputdir,$outputfilename) ;
 	#system(join(" ","rm -f $tmpsac"));
@@ -768,6 +813,8 @@ sub win2_single {
     }
 	my $t1 = "$year_i-$month_i-${day_i}T$hour_i:$min_i:$sec_i" ;
 	my $t2 = "$year_f-$month_f-${day_f}T$hour_f:$min_f:$sec_f" ;
+	my $respname = "RESP.$net.$sta.$loc.$comp" ;
+	&getresp($net,$sta,$loc,$comp,$t1,$t2,$outputdir_resp,$respname) ;
 	&getsac($net,$sta,$loc,$comp,$t1,$t2,$outputPath,$tmpdir,$tmpsac) ;
     &sacMerg("$tmpdir/$tmpsac",$year_i,$month_i,$day_i,$hour_i,$min_i,$sec_i,$net,$sta,$loc,$comp,$outputdir,$outputfilename) ;
 	#system(join(" ","rm -f $tmpsac"));
@@ -816,4 +863,11 @@ sub shiftzero {
 		$times[$i] = $times[$i] - $tok ;
 	}
 	$t0 = [gettimeofday] ;
+}
+
+sub warning_file_exist {
+	my ($fname)=@_ ;
+	if (-e $fname){
+		print "warning: file will be overwritten ($fname)\n" ;
+	}
 }
