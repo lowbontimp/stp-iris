@@ -30,6 +30,7 @@ You can know where `sac` is by
 ```
 $) which sac
 ```
+If not installed, `sac` should be preinstalled.
 
 ## Tutorial
 ### Start
