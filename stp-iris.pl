@@ -88,12 +88,13 @@ sub win2_single_evt {
 	my $t1 = "$year_i-$month_i-${day_i}T$hour_i:$min_i:$sec_i" ;
 	my $t2 = "$year_f-$month_f-${day_f}T$hour_f:$min_f:$sec_f" ;
 
+	my $respname = "RESP.$net.$sta.$loc.$comp" ;
+	&getresp($net,$sta,$loc,$comp,$t1,$t2,$outputdir_resp,$respname) ;
+
 	if ( ($skip eq "on") and (-e "$outputdir/$outputfilename") ){
 		print "skip: $outputdir/$outputfilename\n";
 		goto skip_win2_single_evt ;
 	}
-	my $respname = "RESP.$net.$sta.$loc.$comp" ;
-	&getresp($net,$sta,$loc,$comp,$t1,$t2,$outputdir_resp,$respname) ;
 	&getsac($net,$sta,$loc,$comp,$t1,$t2,$outputPath,$tmpdir,$tmpsac) ;
     &sacMerg("$tmpdir/$tmpsac",$year_i,$month_i,$day_i,$hour_i,$min_i,$sec_i,$net,$sta,$loc,$comp,$outputdir,$outputfilename) ;
 	#system(join(" ","rm -f $tmpsac"));
