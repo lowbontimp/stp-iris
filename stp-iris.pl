@@ -35,6 +35,7 @@ my ($evmag_g,$evmagtyp_g) = (-12345,-12345);
 my $outputfilename="0";
 my $verbose=1; # 1 or 0;
 my $skip = "off"; #on or off
+my $skipresp = "on" ; #skip if the response file exists
 
 #rate of connection
 my $sleeping_time = 1e6*0.5 ; #microsecond
@@ -89,7 +90,12 @@ sub win2_single_evt {
 	my $t2 = "$year_f-$month_f-${day_f}T$hour_f:$min_f:$sec_f" ;
 
 	my $respname = "RESP.$net.$sta.$loc.$comp" ;
-	&getresp($net,$sta,$loc,$comp,$t1,$t2,$outputdir_resp,$respname) ;
+	
+	if ( ($skipresp eq "off") or (not -e "$outputdir_resp/$respname") ){
+		&getresp($net,$sta,$loc,$comp,$t1,$t2,$outputdir_resp,$respname) ;
+	}else{
+		print "skip: $outputdir_resp/$respname\n";
+	}
 
 	if ( ($skip eq "on") and (-e "$outputdir/$outputfilename") ){
 		print "skip: $outputdir/$outputfilename\n";
