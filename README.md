@@ -21,7 +21,7 @@ $) PERL_MM_USE_DEFAULT=1 perl -MCPAN -e 'install +LWP::UserAgent'
 $) PERL_MM_USE_DEFAULT=1 perl -MCPAN -e 'install +Date::Calc::XS'
 ```
 
-### 2. Setting the path of [`sac`](https://ds.iris.edu/ds/nodes/dmc/software/downloads/sac/)
+### 2. Setting the path of `sac`
 Go to edit mode (`vi ./stp-iris.pl`) and set the line below properly for your system.
 ```
 my $sac = "/opt/sac/bin/sac" ;
@@ -30,7 +30,7 @@ You can know where `sac` is by
 ```
 $) which sac
 ```
-If not installed, `sac` should be preinstalled.
+If not installed, `sac` should be preinstalled at https://ds.iris.edu/ds/nodes/dmc/software/downloads/sac/.
 
 ## Tutorial
 ### Start
