@@ -212,6 +212,6 @@ Removing or changing this part in `stp-iris.pl` needs carefulness.
 
 ## List of to do
 - [ ] Option to change 'O' into other phases, such as 'P' or 'S' (using raytracing program).
-- [ ] Custom format of name of file. You should modify the source code if you want to change it (`$outputfilename`).
+- [ ] Custom format of name of file. You should modify a variable `$outputfilename` in the source code if you want to change it.
 
 
