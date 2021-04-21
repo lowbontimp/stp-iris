@@ -167,6 +167,7 @@ dir data01/005
 evt 2015/09/12,13:38:01.000 41.9 142.65 49.0 5.5(mwc) O(-200) O(1800) 7D % -- BHZ
 evt 2015/09/12,13:38:01.000 41.9 142.65 49.0 5.5(mwc) O(-200) O(1800) 7D % -- HHZ
 !zip -r data01.zip data01
+!zip -r resp01.zip resp01
 ```
 `skip on` lets `stp-iris.pl` skip redownloading and overwriting the sac files if they exist.
 `!` enables one to run a linux command.
