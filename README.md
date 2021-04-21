@@ -4,7 +4,7 @@ from [IRIS Web Services](http://service.iris.edu) on the command-line interface.
 
 ## Strength
 * It runs in command-line interface.
-* It is light. Computer's memory is used minimally.
+* It is light. Minimal memory of computer is used.
 * It is fast. Raytracing is not performed to find a proper window.
 
 ## Installation
