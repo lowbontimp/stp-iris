@@ -192,6 +192,14 @@ After turning on `stp-iris.pl`,
 STP) input cmd01
 ```
 
+## Example 2: many teleseismic earthquakes using FDSN web service
+Similarly, make an event file and convert it to the input file.
+```
+cd ex02
+./fdsn2stp.pl > cmd01
+STP) input cmd01
+```
+
 ## Tip for running it in background
 [`nohup`](https://linux.die.net/man/1/nohup) makes `stp-iris.pl` run in background and immune to an unexpected shutdown of terminal. It is advantageous when one downloads many data for a long time.
 ```
