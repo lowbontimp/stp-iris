@@ -181,7 +181,7 @@ STP) quit
 ```
 STP) help
 ```
-## Example 1 (many teleseismic earthquakes)
+## Example 1: many teleseismic earthquakes using JWEED
 Convert the event file, _cascadia1234.events_ made by the program [JWEED](https://ds.iris.edu/ds/nodes/dmc/software/downloads/jweed/), to an input file of `stp-iris.pl`.
 Go to directory _ex01_ by `cd ex01`.
 ```
@@ -197,6 +197,9 @@ Similarly, make an event file and convert it to the input file.
 ```
 cd ex02
 ./fdsn2stp.pl > cmd01
+```
+After turning on `stp-iris.pl`,
+```
 STP) input cmd01
 ```
 
