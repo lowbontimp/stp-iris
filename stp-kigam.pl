@@ -28,7 +28,7 @@ my $outputdir=".";
 my $outputdir_resp = "." ;
 my $decimation="off";
 my @factors = ();
-my $tmpdir="./.tmpdir.aJyrZ0RjID782P88";
+my $tmpdir="./.tmpdir.aJyrZ0RjID782P89";
 #my $velocitymodel="ak135";
 my ($phasename1_g,$trvt1_g,$phasename2_g,$trvt2_g)=(-12345,-12345,-12345,-12345);
 my ($evla_g,$evlo_g,$evdp_g)=(-12345,-12345,-12345);
@@ -46,12 +46,16 @@ my @times ;
 my $t0 = [gettimeofday] ;
 
 #box option for searching the stations. no space is allowed
-#my $box = "&minlat=-90&maxlat=90&minlon=-180&maxlon=180" ; #global
-my $box ;
-$box .= "&minlat=38.8533" ;
-$box .= "&maxlat=51.149" ;
-$box .= "&minlon=-134.0732" ;
-$box .= "&maxlon=-122.3837" ;
+my $box = "&minlat=-90&maxlat=90&minlon=-180&maxlon=180" ; #global
+
+#my $token = "M6DZARQiX60...something like it" ;
+my $token = "" ;
+
+#my $box ;
+#$box .= "&minlat=38.8533" ;
+#$box .= "&maxlat=51.149" ;
+#$box .= "&minlon=-134.0732" ;
+#$box .= "&maxlon=-122.3837" ;
 
 
 #main
@@ -90,8 +94,9 @@ sub win2_single_evt {
 	my $t1 = "$year_i-$month_i-${day_i}T$hour_i:$min_i:$sec_i" ;
 	my $t2 = "$year_f-$month_f-${day_f}T$hour_f:$min_f:$sec_f" ;
 
-	my $respname = "RESP.$net.$sta.$loc.$comp" ;
-	
+	#my $respname = "RESP.$net.$sta.$loc.$comp" ;
+	my $respname = "$net.$sta.$loc.$comp.xml" ;	
+
 	if ( ($skipresp eq "off") or (not -e "$outputdir_resp/$respname") ){
 		&getresp($net,$sta,$loc,$comp,$t1,$t2,$outputdir_resp,$respname) ;
 	}else{
@@ -203,9 +208,9 @@ sub getnslcs {
 	my @nslcs ;
 	my $ua = LWP::UserAgent->new ;
 	$ua->agent("MyApp/0.1") ;
-	
-	my $url = "http://service.iris.edu/irisws/fedcatalog/1/query" ;
-	
+	$ua->agent("X-Open-Api-Token/$token") ;
+	#my $url = "http://service.iris.edu/irisws/fedcatalog/1/query" ;
+	my $url = "https://quake.kigam.re.kr/fdsnws/availability/1/query" ;
 	$url .= "?$box" ;
 	$url .= "&net=$net&sta=$sta&cha=$chn&loc=$loc" ;
 	$url .= "&starttime=$t1&endtime=$t2" ;
@@ -216,12 +221,14 @@ sub getnslcs {
 	my $req = HTTP::Request->new(GET => $url) ;
 	my $res = $ua->request($req) ;
 	
+	#print $res->is_success ;
+
 	if ($res->is_success) {
 		my $conts = $res->content ;
 		my @conts = split("\n",$conts) ;
 		foreach my $cont (@conts){
 			chomp($cont) ;
-			if (not ($cont=~m{=} or $cont!~m{\w}) ){
+			if (not ($cont=~m{=} or $cont!~m{\w} or $cont=~m{^\#}) ){
 				my ($net,$sta,$loc,$chn,$t1,$t2) = split(" ",$cont) ;
 				#print "$cont->($net,$sta,$loc,$chn,$t1,$t2)\n" ;
 				push(@nslcs,"$net,$sta,$loc,$chn") ;
@@ -240,19 +247,27 @@ sub getsac {
 	#no wildcard for this subroutine
 	my ($net,$sta,$loc,$chn,$t1,$t2,$tmpzip,$outdir,$sacname)=@_ ;
 	my $output = 0 ;
-	my $ua = LWP::UserAgent->new ;
-	$ua->agent("MyApp/0.1") ;
-	
-	my $url = "http://service.iris.edu/irisws/timeseries/1/query" ;
-	$url .= "?net=$net&sta=$sta&loc=$loc&cha=$chn&starttime=$t1&endtime=$t2&output=sac.zip" ;
+	#my $ua = LWP::UserAgent->new ;
+	#$ua->agent("MyApp/0.1") ;
+	#$ua->agent("X-Open-Api-Token/$token") ;
+	my $ua = LWP::UserAgent->new(
+		'User-Agent' => "stp/$version",
+	) ;
+	#my $url = "http://service.iris.edu/irisws/timeseries/1/query" ;
+	my $url = "https://quake.kigam.re.kr/fdsnws/dataselect/1/query" ;
+	$url .= "?net=$net&sta=$sta&loc=$loc&cha=$chn&starttime=$t1&endtime=$t2&format=sac.zip" ;
 	
 	#print "url: $url\n" ;
 
 	&check_rate() ;
 	my $req = HTTP::Request->new(GET => $url) ;
-	
+	$req->header('X-Open-Api-Token' => $token) ;
+
 	my $res = $ua->request($req) ;
 	
+	#print $res->decoded_content ;
+	#print "\n" ;
+
 	if ($res->is_success) {
 		make_path($outdir) if not -e $outdir ;
 		open(my $f,">$tmpzip") or die "error writing file\n" ;
@@ -262,7 +277,7 @@ sub getsac {
 		unzip $tmpzip => "$outdir/$sacname" ;	
 		$output = 1 ;
 	}else{
-		#print $res->status_line, "\n";
+		print $res->status_line, "\n";
 	}
 	return $output ;
 
@@ -272,20 +287,25 @@ sub getresp {
 	my ($net,$sta,$loc,$chn,$t1,$t2,$outdir,$respname)=@_ ;
 	#http://service.iris.edu/irisws/resp/1/query?net=7D&sta=G30A&loc=--&cha=BHZ&start=2012-01-01T05:24:35.80&end=2012-01-01T05:57:55.80
 	my $output = 0 ;
-	my $ua = LWP::UserAgent->new ;
-	$ua->agent("MyApp/0.1") ;
-	
+	my $ua = LWP::UserAgent->new(
+		'User-Agent' => "stp/$version",
+	) ;
 	make_path($outdir) if not -e $outdir ;
 
 	my $outputpath = "$outdir/$respname" ;
 
 	&warning_file_exist($outputpath) ;
 
-	my $urlresp = "http://service.iris.edu/irisws/resp/1/query" ;
-	$urlresp .= "?net=$net&sta=$sta&loc=$loc&cha=$chn&start=$t1&end=$t2" ;
-	
+	#my $urlresp = "http://service.iris.edu/irisws/resp/1/query" ;
+	my $urlresp = "https://quake.kigam.re.kr/fdsnws/station/1/query" ;
+	#$urlresp .= "?net=$net&sta=$sta&loc=$loc&cha=$chn&start=$t1&end=$t2" ;	
+	$urlresp .= "?net=$net&sta=$sta&loc=$loc&cha=$chn&start=$t1&end=$t2&format=xml&level=response" ;	
+	#$urlresp .= "?net=$net&sta=$sta&loc=$loc&cha=$chn&start=$t1&end=$t2&format=text" ;	
+	#$urlresp .= "?net=$net&sta=$sta&loc=$loc&cha=$chn&start=$t1&end=$t2&format=geocsv" ;	
+
 	&check_rate() ;
 	my $req = HTTP::Request->new(GET => $urlresp) ;
+	$req->header('X-Open-Api-Token' => $token) ;
 	
 	my $res = $ua->request($req) ;
 	
@@ -767,7 +787,8 @@ sub win1_single {
     }
 	my $t1 = "$year_i-$month_i-${day_i}T$hour_i:$min_i:$sec_i" ;
 	my $t2 = "$year_f-$month_f-${day_f}T$hour_f:$min_f:$sec_f" ;
-	my $respname = "RESP.$net.$sta.$loc.$comp" ;
+	#my $respname = "RESP.$net.$sta.$loc.$comp" ;
+	my $respname = "$net.$sta.$loc.$comp.xml" ;
 	&getresp($net,$sta,$loc,$comp,$t1,$t2,$outputdir_resp,$respname) ;
 	&getsac($net,$sta,$loc,$comp,$t1,$t2,$outputPath,$tmpdir,$tmpsac) ;
     &sacMerg("$tmpdir/$tmpsac",$year_i,$month_i,$day_i,$hour_i,$min_i,$sec_i,$net,$sta,$loc,$comp,$outputdir,$outputfilename) ;
@@ -821,7 +842,8 @@ sub win2_single {
     }
 	my $t1 = "$year_i-$month_i-${day_i}T$hour_i:$min_i:$sec_i" ;
 	my $t2 = "$year_f-$month_f-${day_f}T$hour_f:$min_f:$sec_f" ;
-	my $respname = "RESP.$net.$sta.$loc.$comp" ;
+	#my $respname = "RESP.$net.$sta.$loc.$comp" ;
+	my $respname = "$net.$sta.$loc.$comp.xml" ;
 	&getresp($net,$sta,$loc,$comp,$t1,$t2,$outputdir_resp,$respname) ;
 	&getsac($net,$sta,$loc,$comp,$t1,$t2,$outputPath,$tmpdir,$tmpsac) ;
     &sacMerg("$tmpdir/$tmpsac",$year_i,$month_i,$day_i,$hour_i,$min_i,$sec_i,$net,$sta,$loc,$comp,$outputdir,$outputfilename) ;
