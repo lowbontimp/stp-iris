@@ -21,11 +21,6 @@ $) PERL_MM_USE_DEFAULT=1 perl -MCPAN -e 'install +LWP::UserAgent'
 $) PERL_MM_USE_DEFAULT=1 perl -MCPAN -e 'install +Date::Calc::XS'
 ```
 
-If you like to use stp-kigam.pl, install also following.
-```
-PERL_MM_USE_DEFAULT=1 perl -MCPAN -e 'install +LWP::Protocol::https'
-```
-
 
 ### 2. Setting the path of `sac`
 Go to edit mode (`vi ./stp-iris.pl`) and set the line below properly for your system.
@@ -217,11 +212,7 @@ STP) input cmd01
 ```
 Some FDSN event server supports only format=xml. This is for it.
 
-## Example 4: stp-kigam.pl
-It is a version adopting for the Big Data Open Platform of Korea Institute of Geoscience and Mineral Resources.
-Set the token you get from https://data.kigam.re.kr/my-openapi/request/.
-
-## Example 5: 
+## Example 4: 
 
 ## Tip for running it in background
 [`nohup`](https://linux.die.net/man/1/nohup) makes `stp-iris.pl` run in background and immune to an unexpected shutdown of terminal. It is advantageous when one downloads many data for a long time.
