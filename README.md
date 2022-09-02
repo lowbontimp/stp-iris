@@ -220,9 +220,6 @@ Some FDSN event server supports only format=xml. This is for it.
 ## Example 4: stp-kigam.pl
 It is a version adopting for the Big Data Open Platform of Korea Institute of Geoscience and Mineral Resources.
 Set the token you get from https://data.kigam.re.kr/my-openapi/request/.
-```
-my $token = "" ;
-```
 
 ## Example 5: 
 
